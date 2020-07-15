@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="777cbe99b9cc4dd98dfc573d695142f6" Name="Diagram1">
+        <EntityTypeShape EntityType="WSC2019_SS2Model.AssetGroup" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS2Model.Asset" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS2Model.ChangedPart" Width="1.5" PointX="9.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS2Model.DepartmentLocation" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS2Model.Department" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS2Model.EmergencyMaintenance" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS2Model.Employee" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS2Model.Location" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS2Model.Part" Width="1.5" PointX="7.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS2Model.Priority" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="WSC2019_SS2Model.FK__Assets__AssetGro__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS2Model.FK__Assets__Departme__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS2Model.FK__Assets__Employee__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS2Model.FK__Emergency__Asset__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS2Model.FK__ChangedPa__Emerg__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS2Model.FK__ChangedPa__PartI__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS2Model.FK__Departmen__Depar__145C0A3F" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS2Model.FK__Departmen__Locat__15502E78" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS2Model.FK__Emergency__Prior__25869641" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
