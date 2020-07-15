@@ -19,7 +19,6 @@ namespace WSC2019_SS2
             InitializeComponent();
             db = new WSC2019_SS2Entities();
         }
-
         private void EmergencyMaintenanceRequestDetails_Load(object sender, EventArgs e)
         {
             this.lblAssetSN.Text = emergencyMaintenance.Asset.AssetSN;
