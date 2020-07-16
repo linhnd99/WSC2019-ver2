@@ -1,6 +1,9 @@
 use master
 
 go
+drop database WSC2019_SS4
+
+go
 create database WSC2019_SS4
 
 go
@@ -19,13 +22,16 @@ insert into Suppliers values
 go
 create table Parts(
 	ID int primary key identity(1,1),
-	Name nvarchar(100)
+	Name nvarchar(100),
+	EffectiveLife int,
+	BatchNumerHasRequired bit,
+	MinimumAmount float
 )
 insert into Parts values
-	(N'Part 1'),
-	(N'Part 2'),
-	(N'Part 3'),
-	(N'Part 4')
+	(N'Part 1',100,1,0),
+	(N'Part 2',100,0,0),
+	(N'Part 3',100,1,0),
+	(N'Part 4',100,0,0)
 
 go
 create table Warehouses(
@@ -44,10 +50,8 @@ create table TransactionTypes (
 	Name nvarchar(100)
 )
 insert into TransactionTypes values
-	(N'Transaction type 1'),
-	(N'Transaction type 2'),
-	(N'Transaction type 3'),
-	(N'Transaction type 4')
+	(N'Purchase Order'),
+	(N'Warehouse')
 
 go
 create table Orders(
@@ -61,8 +65,8 @@ create table Orders(
 insert into Orders values 
 	(1,1,1,1,'2011-08-13'),
 	(2,2,2,2,'2012-08-13'),
-	(3,3,3,3,'2013-08-13'),
-	(4,4,4,4,'2014-08-13')
+	(1,3,3,3,'2013-08-13'),
+	(2,4,4,4,'2014-08-13')
 
 go
 create table OrderItems (
