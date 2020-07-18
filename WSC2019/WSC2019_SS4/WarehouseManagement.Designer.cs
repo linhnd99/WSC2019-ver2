@@ -32,23 +32,24 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.cbSource = new System.Windows.Forms.ComboBox();
-            this.cbPart = new System.Windows.Forms.ComboBox();
-            this.cbDestination = new System.Windows.Forms.ComboBox();
-            this.cbBatchNumber = new System.Windows.Forms.ComboBox();
-            this.txtAmount = new System.Windows.Forms.TextBox();
-            this.txtDate = new System.Windows.Forms.MaskedTextBox();
             this.dgvPart = new System.Windows.Forms.DataGridView();
+            this.txtAmount = new System.Windows.Forms.TextBox();
+            this.cbBatchNumber = new System.Windows.Forms.ComboBox();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.cbPart = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbSource = new System.Windows.Forms.ComboBox();
+            this.cbDestination = new System.Windows.Forms.ComboBox();
+            this.txtDate = new System.Windows.Forms.MaskedTextBox();
+            this.btnSubmit = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.Partname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BatchNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Action = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.btnSubmit = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.PartID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPart)).BeginInit();
             this.SuspendLayout();
@@ -97,23 +98,55 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Part list";
             // 
-            // label4
+            // dgvPart
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(38, 36);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Part name";
+            this.dgvPart.AllowUserToAddRows = false;
+            this.dgvPart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Partname,
+            this.BatchNumber,
+            this.Amount,
+            this.Action,
+            this.PartID});
+            this.dgvPart.Location = new System.Drawing.Point(6, 65);
+            this.dgvPart.Name = "dgvPart";
+            this.dgvPart.Size = new System.Drawing.Size(770, 146);
+            this.dgvPart.TabIndex = 10;
+            this.dgvPart.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPart_CellContentClick);
             // 
-            // label5
+            // txtAmount
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(290, 36);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Batch number";
+            this.txtAmount.Location = new System.Drawing.Point(572, 31);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.Size = new System.Drawing.Size(100, 20);
+            this.txtAmount.TabIndex = 9;
+            // 
+            // cbBatchNumber
+            // 
+            this.cbBatchNumber.FormattingEnabled = true;
+            this.cbBatchNumber.Location = new System.Drawing.Point(372, 28);
+            this.cbBatchNumber.Name = "cbBatchNumber";
+            this.cbBatchNumber.Size = new System.Drawing.Size(129, 21);
+            this.cbBatchNumber.TabIndex = 8;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(702, 31);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.Text = "Add to list";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // cbPart
+            // 
+            this.cbPart.FormattingEnabled = true;
+            this.cbPart.Location = new System.Drawing.Point(100, 31);
+            this.cbPart.Name = "cbPart";
+            this.cbPart.Size = new System.Drawing.Size(126, 21);
+            this.cbPart.TabIndex = 5;
+            this.cbPart.SelectedIndexChanged += new System.EventHandler(this.cbPart_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -124,14 +157,23 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Amount";
             // 
-            // btnAdd
+            // label5
             // 
-            this.btnAdd.Location = new System.Drawing.Point(702, 31);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 7;
-            this.btnAdd.Text = "Add to list";
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(290, 36);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(73, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Batch number";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(38, 36);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Part name";
             // 
             // cbSource
             // 
@@ -141,14 +183,6 @@
             this.cbSource.Size = new System.Drawing.Size(185, 21);
             this.cbSource.TabIndex = 4;
             // 
-            // cbPart
-            // 
-            this.cbPart.FormattingEnabled = true;
-            this.cbPart.Location = new System.Drawing.Point(100, 31);
-            this.cbPart.Name = "cbPart";
-            this.cbPart.Size = new System.Drawing.Size(126, 21);
-            this.cbPart.TabIndex = 5;
-            // 
             // cbDestination
             // 
             this.cbDestination.FormattingEnabled = true;
@@ -156,21 +190,6 @@
             this.cbDestination.Name = "cbDestination";
             this.cbDestination.Size = new System.Drawing.Size(185, 21);
             this.cbDestination.TabIndex = 6;
-            // 
-            // cbBatchNumber
-            // 
-            this.cbBatchNumber.FormattingEnabled = true;
-            this.cbBatchNumber.Location = new System.Drawing.Point(372, 28);
-            this.cbBatchNumber.Name = "cbBatchNumber";
-            this.cbBatchNumber.Size = new System.Drawing.Size(129, 21);
-            this.cbBatchNumber.TabIndex = 8;
-            // 
-            // txtAmount
-            // 
-            this.txtAmount.Location = new System.Drawing.Point(572, 31);
-            this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(100, 20);
-            this.txtAmount.TabIndex = 9;
             // 
             // txtDate
             // 
@@ -181,19 +200,24 @@
             this.txtDate.TabIndex = 7;
             this.txtDate.ValidatingType = typeof(System.DateTime);
             // 
-            // dgvPart
+            // btnSubmit
             // 
-            this.dgvPart.AllowUserToAddRows = false;
-            this.dgvPart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Partname,
-            this.BatchNumber,
-            this.Amount,
-            this.Action});
-            this.dgvPart.Location = new System.Drawing.Point(6, 65);
-            this.dgvPart.Name = "dgvPart";
-            this.dgvPart.Size = new System.Drawing.Size(770, 146);
-            this.dgvPart.TabIndex = 10;
+            this.btnSubmit.Location = new System.Drawing.Point(320, 346);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(75, 23);
+            this.btnSubmit.TabIndex = 8;
+            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(423, 345);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 9;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // Partname
             // 
@@ -225,23 +249,11 @@
             this.Action.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Action.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // btnSubmit
+            // PartID
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(320, 346);
-            this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(75, 23);
-            this.btnSubmit.TabIndex = 8;
-            this.btnSubmit.Text = "Submit";
-            this.btnSubmit.UseVisualStyleBackColor = true;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(423, 345);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 9;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.PartID.HeaderText = "PartID";
+            this.PartID.Name = "PartID";
+            this.PartID.Visible = false;
             // 
             // WarehouseManagement
             // 
@@ -259,6 +271,7 @@
             this.Controls.Add(this.label1);
             this.Name = "WarehouseManagement";
             this.Text = "Warehouse Management";
+            this.Load += new System.EventHandler(this.WarehouseManagement_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPart)).EndInit();
@@ -284,11 +297,12 @@
         private System.Windows.Forms.ComboBox cbSource;
         private System.Windows.Forms.ComboBox cbDestination;
         private System.Windows.Forms.MaskedTextBox txtDate;
+        private System.Windows.Forms.Button btnSubmit;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.DataGridViewTextBoxColumn Partname;
         private System.Windows.Forms.DataGridViewTextBoxColumn BatchNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
         private System.Windows.Forms.DataGridViewLinkColumn Action;
-        private System.Windows.Forms.Button btnSubmit;
-        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PartID;
     }
 }

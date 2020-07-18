@@ -71,6 +71,7 @@
             this.warehouseManagementToolStripMenuItem.Name = "warehouseManagementToolStripMenuItem";
             this.warehouseManagementToolStripMenuItem.Size = new System.Drawing.Size(152, 20);
             this.warehouseManagementToolStripMenuItem.Text = "Warehouse Management";
+            this.warehouseManagementToolStripMenuItem.Click += new System.EventHandler(this.warehouseManagementToolStripMenuItem_Click);
             // 
             // inventoryReportToolStripMenuItem
             // 

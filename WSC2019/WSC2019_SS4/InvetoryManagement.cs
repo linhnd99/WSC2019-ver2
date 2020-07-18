@@ -76,7 +76,19 @@ namespace WSC2019_SS4
                     form2.selectedOrderItem = db.OrderItems.Where(x => x.ID == oiid).SingleOrDefault();
                     form2.ShowDialog();
                 }    
+                else
+                {
+                    WarehouseManagement form2 = new WarehouseManagement();
+                    form2.selectedOrderItem = db.OrderItems.Where(x => x.ID == oiid).SingleOrDefault();
+                    form2.ShowDialog();
+                }
             }
+        }
+
+        private void warehouseManagementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WarehouseManagement form2 = new WarehouseManagement();
+            form2.ShowDialog();
         }
     }
 }
