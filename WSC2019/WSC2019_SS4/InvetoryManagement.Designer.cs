@@ -78,6 +78,7 @@
             this.inventoryReportToolStripMenuItem.Name = "inventoryReportToolStripMenuItem";
             this.inventoryReportToolStripMenuItem.Size = new System.Drawing.Size(107, 20);
             this.inventoryReportToolStripMenuItem.Text = "Inventory Report";
+            this.inventoryReportToolStripMenuItem.Click += new System.EventHandler(this.inventoryReportToolStripMenuItem_Click);
             // 
             // dgvManagement
             // 

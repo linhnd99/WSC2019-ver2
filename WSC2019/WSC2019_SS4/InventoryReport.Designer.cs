@@ -31,17 +31,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cbWarehouse = new System.Windows.Forms.ComboBox();
-            this.rdCurrent = new System.Windows.Forms.RadioButton();
-            this.rdReceived = new System.Windows.Forms.RadioButton();
             this.rdOutOf = new System.Windows.Forms.RadioButton();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.rdReceived = new System.Windows.Forms.RadioButton();
+            this.rdCurrent = new System.Windows.Forms.RadioButton();
+            this.cbWarehouse = new System.Windows.Forms.ComboBox();
+            this.dgvResult = new System.Windows.Forms.DataGridView();
             this.Partname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CurrentStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReceivedStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Action = new System.Windows.Forms.DataGridViewLinkColumn();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -74,24 +74,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Inventory Type";
             // 
-            // cbWarehouse
+            // rdOutOf
             // 
-            this.cbWarehouse.FormattingEnabled = true;
-            this.cbWarehouse.Location = new System.Drawing.Point(16, 66);
-            this.cbWarehouse.Name = "cbWarehouse";
-            this.cbWarehouse.Size = new System.Drawing.Size(199, 21);
-            this.cbWarehouse.TabIndex = 3;
-            // 
-            // rdCurrent
-            // 
-            this.rdCurrent.AutoSize = true;
-            this.rdCurrent.Location = new System.Drawing.Point(27, 22);
-            this.rdCurrent.Name = "rdCurrent";
-            this.rdCurrent.Size = new System.Drawing.Size(90, 17);
-            this.rdCurrent.TabIndex = 0;
-            this.rdCurrent.TabStop = true;
-            this.rdCurrent.Text = "Current Stock";
-            this.rdCurrent.UseVisualStyleBackColor = true;
+            this.rdOutOf.AutoSize = true;
+            this.rdOutOf.Location = new System.Drawing.Point(367, 22);
+            this.rdOutOf.Name = "rdOutOf";
+            this.rdOutOf.Size = new System.Drawing.Size(83, 17);
+            this.rdOutOf.TabIndex = 2;
+            this.rdOutOf.TabStop = true;
+            this.rdOutOf.Text = "Out of stock";
+            this.rdOutOf.UseVisualStyleBackColor = true;
             // 
             // rdReceived
             // 
@@ -104,30 +96,39 @@
             this.rdReceived.Text = "Received Stock";
             this.rdReceived.UseVisualStyleBackColor = true;
             // 
-            // rdOutOf
+            // rdCurrent
             // 
-            this.rdOutOf.AutoSize = true;
-            this.rdOutOf.Location = new System.Drawing.Point(367, 22);
-            this.rdOutOf.Name = "rdOutOf";
-            this.rdOutOf.Size = new System.Drawing.Size(83, 17);
-            this.rdOutOf.TabIndex = 2;
-            this.rdOutOf.TabStop = true;
-            this.rdOutOf.Text = "Out of stock";
-            this.rdOutOf.UseVisualStyleBackColor = true;
+            this.rdCurrent.AutoSize = true;
+            this.rdCurrent.Location = new System.Drawing.Point(27, 22);
+            this.rdCurrent.Name = "rdCurrent";
+            this.rdCurrent.Size = new System.Drawing.Size(90, 17);
+            this.rdCurrent.TabIndex = 0;
+            this.rdCurrent.TabStop = true;
+            this.rdCurrent.Text = "Current Stock";
+            this.rdCurrent.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // cbWarehouse
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cbWarehouse.FormattingEnabled = true;
+            this.cbWarehouse.Location = new System.Drawing.Point(16, 66);
+            this.cbWarehouse.Name = "cbWarehouse";
+            this.cbWarehouse.Size = new System.Drawing.Size(199, 21);
+            this.cbWarehouse.TabIndex = 3;
+            this.cbWarehouse.SelectedIndexChanged += new System.EventHandler(this.cbWarehouse_SelectedIndexChanged);
+            // 
+            // dgvResult
+            // 
+            this.dgvResult.AllowUserToAddRows = false;
+            this.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Partname,
             this.CurrentStock,
             this.ReceivedStock,
             this.Action});
-            this.dataGridView1.Location = new System.Drawing.Point(14, 139);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(750, 166);
-            this.dataGridView1.TabIndex = 4;
+            this.dgvResult.Location = new System.Drawing.Point(14, 139);
+            this.dgvResult.Name = "dgvResult";
+            this.dgvResult.Size = new System.Drawing.Size(750, 166);
+            this.dgvResult.TabIndex = 4;
             // 
             // Partname
             // 
@@ -164,16 +165,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 333);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvResult);
             this.Controls.Add(this.cbWarehouse);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "InventoryReport";
             this.Text = "InventoryReport";
+            this.Load += new System.EventHandler(this.InventoryReport_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,7 +190,7 @@
         private System.Windows.Forms.RadioButton rdReceived;
         private System.Windows.Forms.RadioButton rdCurrent;
         private System.Windows.Forms.ComboBox cbWarehouse;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvResult;
         private System.Windows.Forms.DataGridViewTextBoxColumn Partname;
         private System.Windows.Forms.DataGridViewTextBoxColumn CurrentStock;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReceivedStock;

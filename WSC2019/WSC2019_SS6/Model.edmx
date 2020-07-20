@@ -1,0 +1,774 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WSC2019_SS6Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Assets">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssetSN" Type="nvarchar" MaxLength="100" />
+          <Property Name="AssetName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DepartmentLocationID" Type="int" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="AssetGroupID" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="WarrantyDate" Type="int" />
+        </EntityType>
+        <EntityType Name="DepartmentLocations">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="LocationID" Type="int" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="EmergencyMaintenances">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssetID" Type="int" />
+          <Property Name="PriorityID" Type="int" />
+          <Property Name="DescriptionEmergency" Type="nvarchar" MaxLength="100" />
+          <Property Name="OtherConsiderations" Type="nvarchar" MaxLength="100" />
+          <Property Name="EMRequestDate" Type="date" />
+          <Property Name="EMStartDate" Type="date" />
+          <Property Name="EMEndDate" Type="date" />
+          <Property Name="EMTechnicianNote" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Locations">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="OrderItems">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="PartID" Type="int" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="UnitPrice" Type="nvarchar" MaxLength="100" />
+          <Property Name="BatchNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="Stock" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionTypeID" Type="int" />
+          <Property Name="SupplierID" Type="int" />
+          <Property Name="EmergencyMaintenancesID" Type="int" />
+          <Property Name="SourceWarehouseID" Type="int" />
+          <Property Name="DestinationWarehouseID" Type="int" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Time" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="Parts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="EffectiveLife" Type="int" />
+          <Property Name="MinimumQuantity" Type="int" />
+          <Property Name="BatchNumberHasRequired" Type="bit" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TransactionTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Warehouses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__Assets__Departme__182C9B23">
+          <End Role="DepartmentLocations" Type="Self.DepartmentLocations" Multiplicity="0..1" />
+          <End Role="Assets" Type="Self.Assets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DepartmentLocations">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Assets">
+              <PropertyRef Name="DepartmentLocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__Depar__145C0A3F">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+          <End Role="DepartmentLocations" Type="Self.DepartmentLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DepartmentLocations">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__Locat__15502E78">
+          <End Role="Locations" Type="Self.Locations" Multiplicity="0..1" />
+          <End Role="DepartmentLocations" Type="Self.DepartmentLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DepartmentLocations">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Emergency__Asset__1B0907CE">
+          <End Role="Assets" Type="Self.Assets" Multiplicity="0..1" />
+          <End Role="EmergencyMaintenances" Type="Self.EmergencyMaintenances" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assets">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmergencyMaintenances">
+              <PropertyRef Name="AssetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderItem__Order__35BCFE0A">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderItems">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderItem__PartI__36B12243">
+          <End Role="Parts" Type="Self.Parts" Multiplicity="0..1" />
+          <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderItems">
+              <PropertyRef Name="PartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Destinat__32E0915F">
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="DestinationWarehouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Emergenc__30F848ED">
+          <End Role="EmergencyMaintenances" Type="Self.EmergencyMaintenances" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmergencyMaintenances">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="EmergencyMaintenancesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__SourceWa__31EC6D26">
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="SourceWarehouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Supplier__300424B4">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Transact__2F10007B">
+          <End Role="TransactionTypes" Type="Self.TransactionTypes" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="TransactionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WSC2019_SS6ModelStoreContainer">
+          <EntitySet Name="Assets" EntityType="Self.Assets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DepartmentLocations" EntityType="Self.DepartmentLocations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmergencyMaintenances" EntityType="Self.EmergencyMaintenances" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderItems" EntityType="Self.OrderItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parts" EntityType="Self.Parts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionTypes" EntityType="Self.TransactionTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warehouses" EntityType="Self.Warehouses" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Assets__Departme__182C9B23" Association="Self.FK__Assets__Departme__182C9B23">
+            <End Role="DepartmentLocations" EntitySet="DepartmentLocations" />
+            <End Role="Assets" EntitySet="Assets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__Depar__145C0A3F" Association="Self.FK__Departmen__Depar__145C0A3F">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="DepartmentLocations" EntitySet="DepartmentLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__Locat__15502E78" Association="Self.FK__Departmen__Locat__15502E78">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="DepartmentLocations" EntitySet="DepartmentLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Emergency__Asset__1B0907CE" Association="Self.FK__Emergency__Asset__1B0907CE">
+            <End Role="Assets" EntitySet="Assets" />
+            <End Role="EmergencyMaintenances" EntitySet="EmergencyMaintenances" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderItem__Order__35BCFE0A" Association="Self.FK__OrderItem__Order__35BCFE0A">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderItem__PartI__36B12243" Association="Self.FK__OrderItem__PartI__36B12243">
+            <End Role="Parts" EntitySet="Parts" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Destinat__32E0915F" Association="Self.FK__Orders__Destinat__32E0915F">
+            <End Role="Warehouses" EntitySet="Warehouses" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Emergenc__30F848ED" Association="Self.FK__Orders__Emergenc__30F848ED">
+            <End Role="EmergencyMaintenances" EntitySet="EmergencyMaintenances" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__SourceWa__31EC6D26" Association="Self.FK__Orders__SourceWa__31EC6D26">
+            <End Role="Warehouses" EntitySet="Warehouses" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Supplier__300424B4" Association="Self.FK__Orders__Supplier__300424B4">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Transact__2F10007B" Association="Self.FK__Orders__Transact__2F10007B">
+            <End Role="TransactionTypes" EntitySet="TransactionTypes" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WSC2019_SS6Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Asset">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssetSN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AssetName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentLocationID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="AssetGroupID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WarrantyDate" Type="Int32" />
+          <NavigationProperty Name="DepartmentLocation" Relationship="Self.FK__Assets__Departme__182C9B23" FromRole="Assets" ToRole="DepartmentLocations" />
+          <NavigationProperty Name="EmergencyMaintenances" Relationship="Self.FK__Emergency__Asset__1B0907CE" FromRole="Assets" ToRole="EmergencyMaintenances" />
+        </EntityType>
+        <EntityType Name="DepartmentLocation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="LocationID" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Assets" Relationship="Self.FK__Assets__Departme__182C9B23" FromRole="DepartmentLocations" ToRole="Assets" />
+          <NavigationProperty Name="Department" Relationship="Self.FK__Departmen__Depar__145C0A3F" FromRole="DepartmentLocations" ToRole="Departments" />
+          <NavigationProperty Name="Location" Relationship="Self.FK__Departmen__Locat__15502E78" FromRole="DepartmentLocations" ToRole="Locations" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DepartmentLocations" Relationship="Self.FK__Departmen__Depar__145C0A3F" FromRole="Departments" ToRole="DepartmentLocations" />
+        </EntityType>
+        <EntityType Name="EmergencyMaintenance">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssetID" Type="Int32" />
+          <Property Name="PriorityID" Type="Int32" />
+          <Property Name="DescriptionEmergency" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OtherConsiderations" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EMRequestDate" Type="DateTime" Precision="0" />
+          <Property Name="EMStartDate" Type="DateTime" Precision="0" />
+          <Property Name="EMEndDate" Type="DateTime" Precision="0" />
+          <Property Name="EMTechnicianNote" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Asset" Relationship="Self.FK__Emergency__Asset__1B0907CE" FromRole="EmergencyMaintenances" ToRole="Assets" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Emergenc__30F848ED" FromRole="EmergencyMaintenances" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DepartmentLocations" Relationship="Self.FK__Departmen__Locat__15502E78" FromRole="Locations" ToRole="DepartmentLocations" />
+        </EntityType>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="PartID" Type="Int32" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="UnitPrice" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BatchNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Stock" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__OrderItem__Order__35BCFE0A" FromRole="OrderItems" ToRole="Orders" />
+          <NavigationProperty Name="Part" Relationship="Self.FK__OrderItem__PartI__36B12243" FromRole="OrderItems" ToRole="Parts" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionTypeID" Type="Int32" />
+          <Property Name="SupplierID" Type="Int32" />
+          <Property Name="EmergencyMaintenancesID" Type="Int32" />
+          <Property Name="SourceWarehouseID" Type="Int32" />
+          <Property Name="DestinationWarehouseID" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Time" Type="Time" Precision="7" />
+          <NavigationProperty Name="EmergencyMaintenance" Relationship="Self.FK__Orders__Emergenc__30F848ED" FromRole="Orders" ToRole="EmergencyMaintenances" />
+          <NavigationProperty Name="OrderItems" Relationship="Self.FK__OrderItem__Order__35BCFE0A" FromRole="Orders" ToRole="OrderItems" />
+          <NavigationProperty Name="Warehouse" Relationship="Self.FK__Orders__Destinat__32E0915F" FromRole="Orders" ToRole="Warehouses" />
+          <NavigationProperty Name="Warehouse1" Relationship="Self.FK__Orders__SourceWa__31EC6D26" FromRole="Orders" ToRole="Warehouses" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK__Orders__Supplier__300424B4" FromRole="Orders" ToRole="Suppliers" />
+          <NavigationProperty Name="TransactionType" Relationship="Self.FK__Orders__Transact__2F10007B" FromRole="Orders" ToRole="TransactionTypes" />
+        </EntityType>
+        <EntityType Name="Part">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EffectiveLife" Type="Int32" />
+          <Property Name="MinimumQuantity" Type="Int32" />
+          <Property Name="BatchNumberHasRequired" Type="Boolean" />
+          <NavigationProperty Name="OrderItems" Relationship="Self.FK__OrderItem__PartI__36B12243" FromRole="Parts" ToRole="OrderItems" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Supplier__300424B4" FromRole="Suppliers" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="TransactionType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Transact__2F10007B" FromRole="TransactionTypes" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Destinat__32E0915F" FromRole="Warehouses" ToRole="Orders" />
+          <NavigationProperty Name="Orders1" Relationship="Self.FK__Orders__SourceWa__31EC6D26" FromRole="Warehouses" ToRole="Orders" />
+        </EntityType>
+        <Association Name="FK__Assets__Departme__182C9B23">
+          <End Role="DepartmentLocations" Type="Self.DepartmentLocation" Multiplicity="0..1" />
+          <End Role="Assets" Type="Self.Asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DepartmentLocations">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Assets">
+              <PropertyRef Name="DepartmentLocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Emergency__Asset__1B0907CE">
+          <End Role="Assets" Type="Self.Asset" Multiplicity="0..1" />
+          <End Role="EmergencyMaintenances" Type="Self.EmergencyMaintenance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assets">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmergencyMaintenances">
+              <PropertyRef Name="AssetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__Depar__145C0A3F">
+          <End Role="Departments" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="DepartmentLocations" Type="Self.DepartmentLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DepartmentLocations">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__Locat__15502E78">
+          <End Role="Locations" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="DepartmentLocations" Type="Self.DepartmentLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DepartmentLocations">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Emergenc__30F848ED">
+          <End Role="EmergencyMaintenances" Type="Self.EmergencyMaintenance" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmergencyMaintenances">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="EmergencyMaintenancesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderItem__Order__35BCFE0A">
+          <End Role="Orders" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="OrderItems" Type="Self.OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderItems">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderItem__PartI__36B12243">
+          <End Role="Parts" Type="Self.Part" Multiplicity="0..1" />
+          <End Role="OrderItems" Type="Self.OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderItems">
+              <PropertyRef Name="PartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Destinat__32E0915F">
+          <End Role="Warehouses" Type="Self.Warehouse" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="DestinationWarehouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__SourceWa__31EC6D26">
+          <End Role="Warehouses" Type="Self.Warehouse" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="SourceWarehouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Supplier__300424B4">
+          <End Role="Suppliers" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Transact__2F10007B">
+          <End Role="TransactionTypes" Type="Self.TransactionType" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="TransactionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WSC2019_SS6Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Assets" EntityType="Self.Asset" />
+          <EntitySet Name="DepartmentLocations" EntityType="Self.DepartmentLocation" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="EmergencyMaintenances" EntityType="Self.EmergencyMaintenance" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="OrderItems" EntityType="Self.OrderItem" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Parts" EntityType="Self.Part" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <EntitySet Name="TransactionTypes" EntityType="Self.TransactionType" />
+          <EntitySet Name="Warehouses" EntityType="Self.Warehouse" />
+          <AssociationSet Name="FK__Assets__Departme__182C9B23" Association="Self.FK__Assets__Departme__182C9B23">
+            <End Role="DepartmentLocations" EntitySet="DepartmentLocations" />
+            <End Role="Assets" EntitySet="Assets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Emergency__Asset__1B0907CE" Association="Self.FK__Emergency__Asset__1B0907CE">
+            <End Role="Assets" EntitySet="Assets" />
+            <End Role="EmergencyMaintenances" EntitySet="EmergencyMaintenances" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__Depar__145C0A3F" Association="Self.FK__Departmen__Depar__145C0A3F">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="DepartmentLocations" EntitySet="DepartmentLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__Locat__15502E78" Association="Self.FK__Departmen__Locat__15502E78">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="DepartmentLocations" EntitySet="DepartmentLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Emergenc__30F848ED" Association="Self.FK__Orders__Emergenc__30F848ED">
+            <End Role="EmergencyMaintenances" EntitySet="EmergencyMaintenances" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderItem__Order__35BCFE0A" Association="Self.FK__OrderItem__Order__35BCFE0A">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderItem__PartI__36B12243" Association="Self.FK__OrderItem__PartI__36B12243">
+            <End Role="Parts" EntitySet="Parts" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Destinat__32E0915F" Association="Self.FK__Orders__Destinat__32E0915F">
+            <End Role="Warehouses" EntitySet="Warehouses" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__SourceWa__31EC6D26" Association="Self.FK__Orders__SourceWa__31EC6D26">
+            <End Role="Warehouses" EntitySet="Warehouses" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Supplier__300424B4" Association="Self.FK__Orders__Supplier__300424B4">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Transact__2F10007B" Association="Self.FK__Orders__Transact__2F10007B">
+            <End Role="TransactionTypes" EntitySet="TransactionTypes" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WSC2019_SS6ModelStoreContainer" CdmEntityContainer="WSC2019_SS6Entities">
+          <EntitySetMapping Name="Assets">
+            <EntityTypeMapping TypeName="WSC2019_SS6Model.Asset">
+              <MappingFragment StoreEntitySet="Assets">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AssetSN" ColumnName="AssetSN" />
+                <ScalarProperty Name="AssetName" ColumnName="AssetName" />
+                <ScalarProperty Name="DepartmentLocationID" ColumnName="DepartmentLocationID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="AssetGroupID" ColumnName="AssetGroupID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="WarrantyDate" ColumnName="WarrantyDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepartmentLocations">
+            <EntityTypeMapping TypeName="WSC2019_SS6Model.DepartmentLocation">
+              <MappingFragment StoreEntitySet="DepartmentLocations">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="WSC2019_SS6Model.Department">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmergencyMaintenances">
+            <EntityTypeMapping TypeName="WSC2019_SS6Model.EmergencyMaintenance">
+              <MappingFragment StoreEntitySet="EmergencyMaintenances">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AssetID" ColumnName="AssetID" />
+                <ScalarProperty Name="PriorityID" ColumnName="PriorityID" />
+                <ScalarProperty Name="DescriptionEmergency" ColumnName="DescriptionEmergency" />
+                <ScalarProperty Name="OtherConsiderations" ColumnName="OtherConsiderations" />
+                <ScalarProperty Name="EMRequestDate" ColumnName="EMRequestDate" />
+                <ScalarProperty Name="EMStartDate" ColumnName="EMStartDate" />
+                <ScalarProperty Name="EMEndDate" ColumnName="EMEndDate" />
+                <ScalarProperty Name="EMTechnicianNote" ColumnName="EMTechnicianNote" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="WSC2019_SS6Model.Location">
+              <MappingFragment StoreEntitySet="Locations">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderItems">
+            <EntityTypeMapping TypeName="WSC2019_SS6Model.OrderItem">
+              <MappingFragment StoreEntitySet="OrderItems">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="PartID" ColumnName="PartID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="BatchNumber" ColumnName="BatchNumber" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="WSC2019_SS6Model.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="EmergencyMaintenancesID" ColumnName="EmergencyMaintenancesID" />
+                <ScalarProperty Name="SourceWarehouseID" ColumnName="SourceWarehouseID" />
+                <ScalarProperty Name="DestinationWarehouseID" ColumnName="DestinationWarehouseID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parts">
+            <EntityTypeMapping TypeName="WSC2019_SS6Model.Part">
+              <MappingFragment StoreEntitySet="Parts">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EffectiveLife" ColumnName="EffectiveLife" />
+                <ScalarProperty Name="MinimumQuantity" ColumnName="MinimumQuantity" />
+                <ScalarProperty Name="BatchNumberHasRequired" ColumnName="BatchNumberHasRequired" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="WSC2019_SS6Model.Supplier">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionTypes">
+            <EntityTypeMapping TypeName="WSC2019_SS6Model.TransactionType">
+              <MappingFragment StoreEntitySet="TransactionTypes">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warehouses">
+            <EntityTypeMapping TypeName="WSC2019_SS6Model.Warehouse">
+              <MappingFragment StoreEntitySet="Warehouses">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

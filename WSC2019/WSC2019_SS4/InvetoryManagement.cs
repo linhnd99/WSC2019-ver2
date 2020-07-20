@@ -90,5 +90,11 @@ namespace WSC2019_SS4
             WarehouseManagement form2 = new WarehouseManagement();
             form2.ShowDialog();
         }
+
+        private void inventoryReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InventoryReport form2 = new InventoryReport();
+            form2.ShowDialog();
+        }
     }
 }
