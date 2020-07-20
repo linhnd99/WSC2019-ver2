@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1ffbff5b479a48b0a8a6e4c31140753a" Name="Diagram1">
+        <EntityTypeShape EntityType="WSC2019_SS1Model.AssetGroup" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS1Model.AssetPhoto" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS1Model.Asset" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS1Model.AssetTransferLog" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS1Model.DepartmentLocation" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS1Model.Department" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS1Model.Employee" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS1Model.Location" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="WSC2019_SS1Model.FK__Assets__AssetGro__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS1Model.FK__AssetPhot__Asset__20C1E124" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS1Model.FK__Assets__Departme__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS1Model.FK__Assets__Employee__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS1Model.FK__AssetTran__Asset__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS1Model.FK__AssetTran__FromD__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS1Model.FK__AssetTran__ToDep__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS1Model.FK__Departmen__Depar__182C9B23" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS1Model.FK__Departmen__Locat__1920BF5C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

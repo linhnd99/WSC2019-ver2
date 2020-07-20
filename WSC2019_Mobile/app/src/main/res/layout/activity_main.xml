@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+            <Spinner
+                android:id="@+id/spnDepartment"
+                android:layout_margin="10dp"
+                android:layout_width="100dp"
+                android:layout_height="30dp"/>
+            <Spinner
+                android:id="@+id/spnAssetGroup"
+                android:layout_margin="10dp"
+                android:layout_width="100dp"
+                android:layout_height="30dp"/>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/txtWarrantyDate"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="Warranty date range:"/>
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+                <EditText
+                    android:id="@+id/txtStartDate"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:hint="Start Date"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+                <EditText
+                    android:id="@+id/txtEndDate"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:hint="End Date"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/txtSearch"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:drawableLeft="@mipmap/ic_launcher"
+            android:drawableRight="@mipmap/ic_launcher"
+            android:hint="Search" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Asset list:"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"/>
+        <ListView
+            android:id="@+id/lvAsset"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="60dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:text="3 assets from 35"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/ic_launcher"
+        app:fabSize="mini"/>
+</RelativeLayout>
