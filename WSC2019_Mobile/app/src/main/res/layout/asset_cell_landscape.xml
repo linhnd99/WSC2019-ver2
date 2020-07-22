@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+        android:id="@+id/imgAvatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="#DEDEDE"/>
+    <TextView
+        android:id="@+id/tvAssetSN"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:layout_toLeftOf="@id/imgAvatar"
+        android:layout_marginLeft="10dp"/>
+    <TextView
+        android:id="@+id/tvAssetName"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_toLeftOf="@id/tvAssetSN"
+        android:layout_marginLeft="10dp"
+        android:textColor="#EE0000"/>
+    <ImageButton
+        android:id="@+id/btnEdit"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_baseline_edit_24"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:foregroundGravity="center"/>
+</RelativeLayout>

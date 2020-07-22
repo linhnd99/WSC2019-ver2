@@ -19,12 +19,12 @@
             <Spinner
                 android:id="@+id/spnDepartment"
                 android:layout_margin="10dp"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"/>
             <Spinner
                 android:id="@+id/spnAssetGroup"
                 android:layout_margin="10dp"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"/>
         </LinearLayout>
 
@@ -48,7 +48,8 @@
                 android:layout_weight="1">
                 <ImageView
                     android:layout_width="30dp"
-                    android:layout_height="30dp"/>
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_calendar_today_24"/>
                 <EditText
                     android:id="@+id/txtStartDate"
                     android:layout_width="100dp"
@@ -62,7 +63,8 @@
                 android:layout_weight="1">
                 <ImageView
                     android:layout_width="30dp"
-                    android:layout_height="30dp"/>
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_calendar_today_24"/>
                 <EditText
                     android:id="@+id/txtEndDate"
                     android:layout_width="100dp"
@@ -71,13 +73,40 @@
             </LinearLayout>
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/txtSearch"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:drawableLeft="@mipmap/ic_launcher"
-            android:drawableRight="@mipmap/ic_launcher"
-            android:hint="Search" />
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="#DEDEDE"
+            android:gravity="center_vertical"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp">
+            <ImageView
+                android:id="@+id/imgBook"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_baseline_menu_book_24"
+                android:foregroundGravity="center"/>
+            <ImageButton
+                android:id="@+id/btnSearch"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_baseline_search_24"
+                android:layout_alignParentRight="true"
+                android:foregroundGravity="center" />
+            <EditText
+                android:id="@+id/txtSearch"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="Search"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@id/imgBook"
+                android:layout_toLeftOf="@id/btnSearch"
+                android:maxLines="1"/>
+
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -86,6 +115,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"/>
         <ListView
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
             android:id="@+id/lvAsset"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -93,17 +124,18 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tvResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:paddingBottom="10dp"
         android:paddingLeft="20dp"
-        android:text="3 assets from 35"/>
+        android:text="3 assets from 35" />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:src="@mipmap/ic_launcher"
-        app:fabSize="mini"/>
+        android:src="@drawable/ic_baseline_add_24"
+        android:background="#EE1010" />
 </RelativeLayout>
