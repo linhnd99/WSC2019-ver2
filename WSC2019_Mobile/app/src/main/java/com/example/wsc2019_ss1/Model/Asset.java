@@ -24,6 +24,29 @@ public class Asset {
     int DepartmentID;
     @SerializedName("DepartmentName")
     String DepartmentName;
+    @SerializedName("LocationID")
+    int LocationID;
+    @SerializedName("LocationName")
+    String LocationName;
+
+    public int getLocationID() {
+        return LocationID;
+    }
+
+    public Asset() {
+    }
+
+    public void setLocationID(int locationID) {
+        LocationID = locationID;
+    }
+
+    public String getLocationName() {
+        return LocationName;
+    }
+
+    public void setLocationName(String locationName) {
+        LocationName = locationName;
+    }
 
     public int getDepartmentID() {
         return DepartmentID;

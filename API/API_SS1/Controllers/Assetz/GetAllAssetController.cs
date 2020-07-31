@@ -26,7 +26,9 @@ namespace API_SS1.Controllers.Asset
                 Description = x.Description,
                 WarrantyDate = x.WarrantyDate,
                 DepartmentID = x.DepartmentLocation.DepartmentID,
-                DepartmentName = x.DepartmentLocation.Department.Name
+                DepartmentName = x.DepartmentLocation.Department.Name,
+                LocationID = x.DepartmentLocation.LocationID,
+                LocationName = x.DepartmentLocation.Location.Name
             }) ;
         }
     }

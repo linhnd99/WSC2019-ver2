@@ -3,7 +3,10 @@ package com.example.wsc2019_ss1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -26,7 +29,9 @@ import com.android.volley.toolbox.Volley;
 import com.example.wsc2019_ss1.Adapter.AssetAdapter;
 import com.example.wsc2019_ss1.Model.Asset;
 import com.example.wsc2019_ss1.Model.AssetGroup;
+import com.example.wsc2019_ss1.Model.Callback;
 import com.example.wsc2019_ss1.Model.Department;
+import com.example.wsc2019_ss1.Model.SharedData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
@@ -35,7 +40,7 @@ import java.util.Calendar;
 
 import static com.example.wsc2019_ss1.Model.DEF.*;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Callback {
 
 
     Calendar startDate,endDate;
@@ -51,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Asset> listAsset;
     ArrayList<Department> listDepartment;
     ArrayList<AssetGroup> listAssetGroup;
+
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -91,9 +97,17 @@ public class MainActivity extends AppCompatActivity {
                             listFilter.add(asset);
                         }
                     }
-                    AssetAdapter assetAdapter = new AssetAdapter(MainActivity.this,R.layout.asset_cell, listFilter);
+                    AssetAdapter assetAdapter = new AssetAdapter(MainActivity.this,R.layout.asset_cell, listFilter, MainActivity.this);
                     lvAsset.setAdapter(assetAdapter);
                     tvResult.setText(listFilter.size() + " assets from "+listAsset.size());
+                }
+            });
+
+            btnAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this,RegisterAndEditAsset.class);
+                    startActivity(intent);
                 }
             });
         }
@@ -104,12 +118,22 @@ public class MainActivity extends AppCompatActivity {
             AnhXa2();
 
             LoadDataToView(2);
+
+            btnAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this,RegisterAndEditAsset.class);
+                    startActivity(intent);
+                }
+            });
         }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedData.sharedData = new SharedData();
+        getSupportActionBar().hide();
         SetOrientationScreen(MainActivity.this.getResources().getConfiguration());
     }
 
@@ -133,6 +157,8 @@ public class MainActivity extends AppCompatActivity {
 
     void LoadDataToView(int sel)
     {
+        final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
+        progressDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
         if (sel==1)
         {
@@ -194,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
                     {
                         listAsset.add(Asset.fromJson(gson.toJson(element)));
                     }
-                    AssetAdapter assetAdapter = new AssetAdapter(MainActivity.this,R.layout.asset_cell,listAsset);
+                    AssetAdapter assetAdapter = new AssetAdapter(MainActivity.this,R.layout.asset_cell,listAsset, MainActivity.this);
                     lvAsset.setAdapter(assetAdapter);
                     ((TextView) findViewById(R.id.tvResult)).setText(listAsset.size() + " assets from "+listAsset.size());
                 }
@@ -218,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
                     {
                         listAsset.add(Asset.fromJson(gson.toJson(element)));
                     }
-                    AssetAdapter assetAdapter = new AssetAdapter(MainActivity.this,R.layout.asset_cell_landscape,listAsset);
+                    AssetAdapter assetAdapter = new AssetAdapter(MainActivity.this,R.layout.asset_cell_landscape,listAsset,MainActivity.this);
                     lvAsset.setAdapter(assetAdapter);
                 }
             }, new Response.ErrorListener() {
@@ -230,7 +256,12 @@ public class MainActivity extends AppCompatActivity {
             requestQueue.add(assetRequest);
         }
 
-
+        requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener() {
+            @Override
+            public void onRequestFinished(Request request) {
+                if (listAsset!=null) progressDialog.dismiss();
+            }
+        });
     }
 
     void DatePicker()
@@ -273,5 +304,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void StartRegisterAndEditAsset(String data, Asset selectedAsset) {
+        Intent intent = new Intent(MainActivity.this,RegisterAndEditAsset.class);
+        intent.putExtra("data",data);
+        intent.putExtra("assetid",selectedAsset.getID());
+        startActivity(intent);
+    }
+    @Override
+    public void StartAssetTransfer(){
+        Intent intent =  new Intent(MainActivity.this,AssetTransfer.class);
+        startActivity(intent);
     }
 }

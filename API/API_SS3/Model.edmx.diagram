@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5b9783b358f346feb3834f6f50bb8ccd" Name="Diagram1">
+        <EntityTypeShape EntityType="WSC2019_SS3Model.AssetOdometer" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS3Model.Asset" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS3Model.PMScheduleModel" Width="1.5" PointX="6" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS3Model.PMScheduleType" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS3Model.PMTask" Width="1.5" PointX="6" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSC2019_SS3Model.Task" Width="1.5" PointX="3.75" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="WSC2019_SS3Model.FK__AssetOdom__Asset__1273C1CD" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS3Model.FK__PMTasks__AssetID__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS3Model.FK__PMSchedul__PMSch__173876EA" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS3Model.FK__PMTasks__PMSched__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="WSC2019_SS3Model.FK__PMTasks__TaskID__1CF15040" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
